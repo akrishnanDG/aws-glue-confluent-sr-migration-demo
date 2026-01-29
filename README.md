@@ -183,8 +183,9 @@ props.put("basic.auth.user.info", "<api-key>:<api-secret>");
 props.put("auto.register.schemas", "false");  // Use pre-registered schemas
 props.put("use.latest.version", "true");
 ```
+**Note:** Make sure all config properties related to AWS Glue SR have been accounted for before making this change. 
 
-**Downtime:** None - producers can be migrated independently
+**Downtime:** Minimal - producers can be migrated independently
 
 ### Phase 4: Complete Migration
 **Goal:** Remove AWS Glue SR dependency entirely
