@@ -1,0 +1,50 @@
+# ===========================================
+# AWS Glue to Confluent SR Migration Demo
+# ===========================================
+
+# Secrets - NEVER commit these!
+src/main/resources/secrets.properties
+secrets.properties
+
+# Build output
+target/
+build/
+out/
+*.class
+*.jar
+*.war
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Maven
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+
+# Gradle (if used)
+.gradle/
+gradle/
+
+# Test output
+test-output/
+surefire-reports/

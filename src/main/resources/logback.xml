@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{20} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Suppress verbose Kafka client logging -->
+    <logger name="org.apache.kafka" level="WARN"/>
+    
+    <!-- Suppress verbose Confluent logging -->
+    <logger name="io.confluent" level="WARN"/>
+    
+    <!-- Suppress verbose AWS SDK logging -->
+    <logger name="software.amazon" level="WARN"/>
+    
+    <!-- Suppress AWS Glue SR configuration info messages -->
+    <logger name="com.amazonaws.services.schemaregistry" level="WARN"/>
+    
+    <!-- Suppress Avro schema warnings -->
+    <logger name="org.apache.avro" level="ERROR"/>
+
+    <!-- Application logging - keep INFO for demo visibility -->
+    <logger name="com.demo.migration" level="INFO"/>
+
+    <root level="WARN">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>

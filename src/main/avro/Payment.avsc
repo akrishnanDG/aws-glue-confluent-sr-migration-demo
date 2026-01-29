@@ -1,0 +1,92 @@
+{
+  "type": "record",
+  "name": "Payment",
+  "namespace": "com.demo.migration.model",
+  "doc": "Represents a payment transaction from PoS systems",
+  "fields": [
+    {
+      "name": "transactionId",
+      "type": "string",
+      "doc": "Unique identifier for the payment transaction"
+    },
+    {
+      "name": "orderId",
+      "type": "string",
+      "doc": "Associated order identifier"
+    },
+    {
+      "name": "customerId",
+      "type": "string",
+      "doc": "Customer identifier"
+    },
+    {
+      "name": "amount",
+      "type": "double",
+      "doc": "Payment amount in the specified currency"
+    },
+    {
+      "name": "currency",
+      "type": "string",
+      "default": "USD",
+      "doc": "Currency code (ISO 4217)"
+    },
+    {
+      "name": "paymentMethod",
+      "type": {
+        "type": "enum",
+        "name": "PaymentMethod",
+        "symbols": ["CREDIT_CARD", "DEBIT_CARD", "DIGITAL_WALLET", "BANK_TRANSFER", "CASH"]
+      },
+      "doc": "Method of payment"
+    },
+    {
+      "name": "paymentStatus",
+      "type": {
+        "type": "enum",
+        "name": "PaymentStatus",
+        "symbols": ["PENDING", "AUTHORIZED", "CAPTURED", "DECLINED", "REFUNDED", "CANCELLED"]
+      },
+      "doc": "Current status of the payment"
+    },
+    {
+      "name": "posChannel",
+      "type": {
+        "type": "enum",
+        "name": "PosChannel",
+        "symbols": ["WEB", "MOBILE_APP", "IN_STORE", "CALL_CENTER", "KIOSK"]
+      },
+      "doc": "Point of Sale channel where transaction originated"
+    },
+    {
+      "name": "merchantId",
+      "type": "string",
+      "doc": "Merchant identifier"
+    },
+    {
+      "name": "merchantName",
+      "type": "string",
+      "doc": "Merchant business name"
+    },
+    {
+      "name": "cardLastFour",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "Last four digits of card (if card payment)"
+    },
+    {
+      "name": "timestamp",
+      "type": "long",
+      "logicalType": "timestamp-millis",
+      "doc": "Transaction timestamp in milliseconds since epoch"
+    },
+    {
+      "name": "metadata",
+      "type": {
+        "type": "map",
+        "values": "string"
+      },
+      "default": {},
+      "doc": "Additional key-value metadata"
+    }
+  ]
+}
