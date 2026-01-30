@@ -2,34 +2,11 @@
 
 This project demonstrates migrating from **AWS Glue Schema Registry** to **Confluent Cloud Schema Registry** using AWS Glue's built-in **`secondary.deserializer`** feature.
 
-## Assumptions
-
-This demo assumes:
-- **Schemas have already been copied** from AWS Glue SR to Confluent SR (Phase 1 completed)
-- Both schema registries contain compatible schemas
-- Kafka data (topic messages) has been already migrated to Confluent Cloud topic
-
-## Dependencies
-
-| Library | Version | Purpose |
-|---------|---------|---------|
-| Java | 17+ | Runtime |
-| Apache Kafka Clients | 3.8.0 | Kafka producer/consumer |
-| Apache Avro | 1.11.3 | Schema serialization |
-| Confluent Kafka Avro Serializer | 7.7.0 | Confluent SR serializer/deserializer |
-| Confluent Schema Registry Client | 7.7.0 | Confluent SR client |
-| AWS Glue Schema Registry Serde | 1.1.19 | AWS Glue SR serde |
-| AWS SDK | 2.21.42 | AWS authentication |
-| DataFaker | 2.1.0 | Realistic test data |
-| SLF4J + Logback | 2.0.9 / 1.4.14 | Logging |
-
-All dependencies are managed via Maven. See `pom.xml` for details.
-
 ## Overview
 
 The demo uses a realistic Point-of-Sale (PoS) payment system scenario with:
-- **Legacy Web POS** → Produces payments using AWS Glue SR
-- **New Mobile POS** → Produces payments using Confluent SR
+- **Legacy Web POS** → Produces payments serialized using AWS Glue SR
+- **New Mobile POS** → Produces payments serialized using Confluent SR
 - **Payment Analytics Consumer** → Reads from both using `secondary.deserializer`
 
 ```
@@ -245,6 +222,12 @@ props.put("basic.auth.user.info", "<api-key>:<api-secret>");
 | 4 | Switch consumers to Confluent-only | Minimal (consumer restart) | 1-2 days |
 
 ---
+## Assumptions
+
+This demo assumes:
+- **Schemas have already been copied** from AWS Glue SR to Confluent SR (Phase 1 completed)
+- Both schema registries contain compatible schemas
+- Kafka data (topic messages) has been already migrated to Confluent Cloud topic
 
 ## Pre-requisites
 
@@ -319,6 +302,21 @@ aws.region=us-east-2
 # AWS Glue Schema Registry
 aws.glue.registry.name=payments-registry
 ```
+## Dependencies
+
+| Library | Version | Purpose |
+|---------|---------|---------|
+| Java | 17+ | Runtime |
+| Apache Kafka Clients | 3.8.0 | Kafka producer/consumer |
+| Apache Avro | 1.11.3 | Schema serialization |
+| Confluent Kafka Avro Serializer | 7.7.0 | Confluent SR serializer/deserializer |
+| Confluent Schema Registry Client | 7.7.0 | Confluent SR client |
+| AWS Glue Schema Registry Serde | 1.1.19 | AWS Glue SR serde |
+| AWS SDK | 2.21.42 | AWS authentication |
+| DataFaker | 2.1.0 | Realistic test data |
+| SLF4J + Logback | 2.0.9 / 1.4.14 | Logging |
+
+All dependencies are managed via Maven. See `pom.xml` for details.
 
 ---
 
