@@ -45,6 +45,8 @@ The `secondary.deserializer` approach is an **intermediate step** in a full migr
 2. Register schemas in Confluent SR with appropriate subject names
 3. Verify schema compatibility between both registries
 
+You can try out this tool: https://github.com/akrishnanDG/glue-to-ccsr
+
 **Important: Subject Naming Strategy Differences**
 
 AWS Glue SR and Confluent SR use **different subject naming conventions**:
